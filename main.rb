@@ -1,4 +1,12 @@
-shitpost = gets
+def pick_random_line
+  chosen_line = nil
+  File.foreach("lines.txt").each_with_index do |line, number|
+    chosen_line = line if rand < 1.0/(number+1)
+  end
+  return chosen_line
+end
+
+shitpost = pick_random_line
 
 require 'rubygems'
 require 'oauth'
@@ -8,11 +16,11 @@ require 'json'
 # read/write on dev.twitter.com and regenerate your access
 # token.  Enter the new values here:
 consumer_key = OAuth::Consumer.new(
-  "[api key]",
-  "[api secret]")
+  "[Key]",
+  "[sec]")
 access_token = OAuth::Token.new(
-  "[access token]",
-  "[access secret]")
+  "[key]",
+  "[secret]")
 
 # Note that the type of request has changed to POST.
 # The request parameters have also moved to the body
